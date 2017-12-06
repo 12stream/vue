@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+    <style>
+
+    </style>
+   
+    <script src="js/vue.js"></script>
+
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    list:['width','height','border']
+                },
+                methods:{
+                    add:function(){
+                        this.list.push('background');
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+
+        <!--1.0里面用track-by="$index"解决数据重复-->
+        <!--<input type="button" value="添加" @click="add">-->
+        <!--<ul>-->
+            <!--<li v-for="val in list" track-by="$index">-->
+                <!--{{val}}-->
+            <!--</li>-->
+        <!--</ul>-->
+
+
+
+
+        <input type="button" value="添加" @click="add">
+            <ul>
+                <li v-for="val in list">
+                {{val}}
+                </li>
+            </ul>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

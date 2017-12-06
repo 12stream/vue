@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="js/vue.js"></script>
+
+    <!--//了解-->
+
+
+    <style>
+        .button{
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background: red;
+            color: #fff;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box">
+
+        <v-a></v-a>
+
+        <br/>
+        <v-b></v-b>
+
+        <br/>
+        <v-c></v-c>
+
+    </div>
+
+<template id="a">
+    <div>
+        A组件 - <button @click="rendData">广播数据</button>
+
+       
+
+    </div>
+</template>
+
+<template id="b">
+
+    <div>
+        B组件
+
+    </div>
+</template>
+
+<template id="c">
+
+    <div>
+        C组件
+
+    </div>
+</template>
+
+
+</body>
+</html>
+
+<script>
+
+    window.onload=function(){
+
+        //定义一个空的实例对象
+
+        var event = new Vue();
+
+        var A={
+            template:'#a',
+
+            data:function(){
+              return{
+                  name:'我是A组件'
+              }
+            } ,        
+
+
+            methods:{
+                rendData(){
+
+
+                        event.$emit('send',this.name)
+                }
+            }
+        };
+        var B={
+
+            template:'#b'
+            ,mounted(){
+                event.$on('send',function(data){
+
+                   console.log("B组件---"+data);
+                })
+
+            }   
+        }
+        var C={
+
+            template:'#c',
+            data:function(){
+              return{
+                  name:'我是c组件'
+              }
+            },methods:{
+
+                run:function(){
+
+                    alert('我是C组件的run方法');
+                }
+            }
+            
+            ,mounted(){
+                event.$on('send',function(data){
+
+                //    console.log(data);
+                   console.log("C组件---"+data);
+
+                    this.run();  /**/
+                
+                }.bind(this))
+
+            }           
+
+        }
+
+
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'this is vue'
+            },
+            components:{
+                'v-a':A,
+                'v-b':B,
+                'v-c':C
+            }
+        });
+    };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

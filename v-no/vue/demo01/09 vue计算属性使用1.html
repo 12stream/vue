@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <script>
+        
+
+         /*
+            1.在模板中表达式非常便利，但是它们实际上只用于简单的操作。
+
+            2.模板是为了描述视图的结构。在模板中放入太多的逻辑会让模板过重且难以维护。这就是为什么 Vue.js 将绑定表达式限制为一个表达式。如果需要多于一个表达式的逻辑，应当使用计算属性。
+        
+
+            在 Vue.js 中，你可以通过 computed 选项定义计算属性：
+         */　
+
+      
+
+
+    </script>
+
+</head>
+<body>
+    <div id="demo">
+      
+        {{str}}
+
+        <br>
+        <br>
+        a:{{a}}----b:{{b}}
+
+        <br>
+        <hr>
+        <button @click="setA">改变A的值</button>
+
+
+        <br>
+        <br>
+
+        {{reverseStr}}
+
+    </div>
+</body>
+</html>
+
+<script>
+
+
+ var v=new Vue({
+
+    el:'#demo',
+    data:{    /*data可以帮到数据   固定的数据*/
+        a:2,
+        str:'我是代码搬砖工'
+    },
+    methods:{
+
+        setA(){
+
+            this.a=662;
+        }
+
+    },
+    computed:{  /*计算属性*/
+
+        b:function(){
+
+            // this.a   data里面的数据
+
+            //a改变b也会改变   a改变重新执行这个方法
+
+            return this.a+4;
+        },
+        reverseStr:function(){
+
+            return this.str.split('').reverse().join('');
+        }
+    }
+   
+ })
+
+
+</script>

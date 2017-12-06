@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+
+    //计算属性只有在它的相关依赖发生改变时才会重新取值。这就意味着只要 message 没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+
+
+    //总结:计算属性比方法的效率更高
+
+    </script>
+</head>
+<body>
+    <div id="box">
+    
+
+    <p>方法： "{{ reverseMessage() }}"</p>
+
+
+    <p>方法： "{{ reverseMessage() }}"</p>
+
+    <br>
+    <br>
+    <p>computed计算属性 "{{reverseMsg}}"</p>
+
+
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                message:'我是代码搬砖工'
+            },
+            methods: {
+                reverseMessage:function (){
+                    return this.message.split('').reverse().join('');
+                },
+
+            },
+            computed:{
+                reverseMsg:function(){                    
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        });
+
+
+         document.onclick=function(){
+
+             vm.message='我是改变后的数据';
+        };
+
+      
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

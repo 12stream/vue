@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件</title>
+    <script src="vue.js"></script>
+    <style>
+        html,body{
+            height: 100%;
+        }
+
+        /*
+
+                alert(this.$parent.msg);  子组件直接获取父组件的数据
+
+               this.$parent.run();  执行父组件的run方法
+        */
+
+    </style>
+</head>
+<body>
+<div id="box">
+        <news></news>
+</div>
+
+<template id="header">
+    <div>
+        <h2>我是头部组件--  <button @click="getParent">获取父组件的数据</button></h2>    
+    </div>
+
+</template>
+
+
+<template id="news">
+    <div>
+
+
+        
+        <v-header ref="header"></v-header>
+
+        <hr>
+        <br>
+
+        <h2>我是news组件-- <button @click='getChildData'>获取子组件的数据</button></h2>
+
+
+        
+    </div>
+</template>
+
+
+<script>
+
+    var Header={
+
+        template:'#header',
+        data:function(){
+            return{
+                msg:'我是header的数据'
+            }
+        },
+        methods:{
+            run:function(){
+                 alert('这是子组件的run方法');
+            },getParent(){
+
+               // alert(this.$parent.msg);  /*子组件直接获取父组件的数据*/
+
+               this.$parent.run();  /*执行父组件的run方法*/
+                
+            }
+        }
+        
+
+    }
+    var News={
+        template:'#news',
+        data:function(){
+            return{
+                msg:'我是news的数据'
+            }
+        },
+        methods:{
+            getChildData:function(){
+                alert(this.$refs.header.msg)
+
+                this.$refs.header.run();
+            },run(){
+
+                alert('这是父组件的run方法');
+            }
+        },
+        components:{
+
+            'v-header':Header
+        }
+    }
+
+
+
+
+
+
+    var vm=new Vue({
+        el:'#box',
+        data:{
+            a:'aaa'
+        },
+        components:{
+            'news':News
+        }
+    });
+
+</script>
+</body>
+</html>

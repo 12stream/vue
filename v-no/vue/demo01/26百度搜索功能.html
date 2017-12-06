@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/vue-resource.js"></script>
+
+
+
+
+    <script>
+        
+        // 1.  应用fetch或axios 获取数据
+
+
+    </script>
+
+</head>
+<body>
+    <div id="example">
+      
+            <input type="text" v-model="search" @keyup="getData">
+
+            <ul>
+                <li v-for="item in list">
+
+                    {{item}}
+                </li>
+            </ul>
+    </div>
+</body>
+
+</html>
+
+<script>
+//    可以在表单的input 元素上使用v-model 指令来创建双向数据绑定。它会根据input元素的类型自动选取正确的绑定模式。
+var vm = new Vue({
+    el: '#example',
+    data: {
+        search: '',
+        list:[]
+    },
+    // 在 'methods' 对象中定义方法
+    methods: {
+        getData:function(){
+
+            var _that=this;
+            console.log(this.search);
+
+              var api='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.search;
+
+
+            this.$http.jsonp(api,{
+                jsonp:'cb' /*默认的回调函数的参数是 callback  百度的回调函数是cb*/
+            }).then(function(data){
+                    console.log(data.body.s);
+
+                    _that.list=data.body.s;
+
+            },function(){
+
+
+            })
+
+        }
+    }
+   
+});
+
+
+
+</script>

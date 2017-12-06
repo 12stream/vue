@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>-事件对象</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <style>
+        .red{
+            color:red;
+        }
+        .button{
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background: red;
+            color: #fff;
+        }
+
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+
+                },
+                methods:{
+                    show:function(ev){
+
+
+                        console.log(ev);
+
+                        ev.srcElement.style.background='blue';
+                        console.log(ev.srcElement.dataset.id);
+                        console.log(ev.srcElement.dataset.aid);
+
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div class="button" data-id="123" data-aid='345'  @click="show($event)"> 这是一个div</div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

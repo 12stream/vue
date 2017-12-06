@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父子组件</title>
+	<script src="js/vue.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+			
+			<v-news></v-news>
+	</div>
+
+	
+	<template id="header">
+		
+		<div>
+			
+			<h2>这是一个头部组件</h2>
+		</div>
+	</template>
+
+
+	<template id="news">
+		
+		<div>
+			
+			<hr>
+			<v-header></v-header>
+
+			
+			<h2>这是一个新闻组件--{{msg}}</h2>
+
+
+			<v-footer></v-footer>
+
+			<hr>
+
+
+		</div>
+	</template>
+
+	<script>
+
+		
+
+		//头部
+
+		//定义组件
+		var Header={
+
+			template:"#header"
+		}
+
+		var Footer={
+
+			template:"<h2>这是一个底部组件</h2>"
+		}
+
+		//新闻
+
+
+		var News={
+			template:"#news",
+
+			data(){
+
+				return{
+					msg:'这是新闻的数据'
+				}
+			},
+
+			components:{  /*新闻组件注册了头部组件*/
+				"v-header":Header,
+				"v-footer":Footer
+
+			}
+		}
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				msg:' this  is  vue'
+			},
+			components:{  /*注册组件*/
+				 'v-news':News
+				
+
+			}
+			
+		});
+		
+
+	</script>
+</body>
+</html>

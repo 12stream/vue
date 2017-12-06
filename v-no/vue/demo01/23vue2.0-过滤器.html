@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   
+    <style>
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+
+
+        window.onload=function(){
+            
+            //定义过滤器
+            Vue.filter('reverseMsg',function(value){
+                    console.log(value);
+
+                    return value.split('').reverse().join('');
+            })
+
+            Vue.filter('toString',function(value){
+                   return value+'哈哈哈';
+            })
+
+
+            //  Vue.filter('Currency',function(value,n1,n2){
+            //     //  ￥1000元
+
+            //     console.log(value);
+
+            //     console.log(n1);
+            //     console.log(n2);
+
+            //     return n1+value+n2;
+            // })
+
+
+
+            new Vue({
+                el:'#box',
+                data:{
+                    msg:9,
+                    price:3020,
+                    message:'这是一个数据'
+                },
+                filters:{
+
+                    Currency:function(value,n1,n2){
+
+                        console.log(value);
+
+                        console.log(n1);
+                        console.log(n2);
+
+                        return n1+value+n2;
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <br>
+        <hr>
+        {{message | reverseMsg }}
+
+        <br>
+        {{message | toString}}
+
+
+        <br>
+        {{msg | toString}}
+
+         <br>
+        {{price | Currency('￥','元')}}
+
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

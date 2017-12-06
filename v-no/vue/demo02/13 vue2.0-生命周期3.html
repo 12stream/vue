@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    msg:'welcome vue2.0'
+                },
+                methods:{   /*自定义方法*/
+                    update(){
+                        this.msg='大家好';
+                    },
+                    destroy(){
+                        this.$destroy();   /*销毁实例 组件*/
+                    }
+                },
+                beforeCreate(){
+                    console.log('实例刚刚被创建1');
+                },
+                created(){
+                    console.log('实例已经创建完成2');
+                },
+                beforeMount(){
+                    console.log('模板编译之前3');
+                },
+                mounted(){     /*请求数据放在这个里面  必须记住  mounted*/
+                    console.log('模板编译完成4');
+                },
+                beforeUpdate(){
+                    console.log('数据更新之前');
+                },
+                updated(){
+                    console.log('数据更新完毕');
+                },
+                beforeDestroy(){
+                    console.log('实例销毁之前');
+                },
+                destroyed(){
+                    console.log('实例销毁完成');
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="更新数据" @click="update()">
+        <input type="button" value="销毁组件" @click="destroy">
+        {{msg}}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

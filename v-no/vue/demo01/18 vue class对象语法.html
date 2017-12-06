@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <style>
+        .static{
+            width: 200px;
+            height: 200px;
+
+        }
+        .class-a{
+
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+        .class-b{
+
+            /*width: 300px;*/
+            /*height:400px;*/
+            color: red;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div id="demo">
+    
+      <div class="static" v-bind:class={"class-a":isA,"class-b":isB}>
+
+          这是一个box
+      </div>
+
+
+        <ul>
+            <li v-for="(item,key) in list" :class={"class-b":key==0}>
+                
+                {{item}}
+
+            </li>
+
+    <br>
+    <br>
+            <li v-for="(item,key) in list">
+                
+                <span v-if="key==0" class="class-b">{{item}}</span>
+
+                <span v-else>{{item}}</span>
+                
+            </li>
+        </ul>
+    </div>
+   
+</body>
+</html>
+
+<script>
+
+
+//    可以传给 v-bind:class 一个对象，以动态地切换class。注意 v-bind:class 指令可以与普通的 class 特性共存。
+var vm = new Vue({
+    el: '#demo',    //div   .class
+    data: {
+        isA: true,
+        isB: false ,
+         list:['1','2','3']  
+
+    },
+    methods:{
+       
+    }
+})
+
+
+
+
+</script>

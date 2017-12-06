@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父组件给子组件传值</title>
+	<script src="js/vue.js"></script>
+	<script>
+		
+		//http://cn.vuejs.org/v2/guide/components.html#Prop-验证
+	</script>
+</head>
+<body>
+	<div id="box">
+			<news></news>
+	</div>
+
+	<template id="header">
+
+		<div>
+
+			<h2>这是一个头部-{{msg}}</h2>
+
+			<button @click="runChild">执行方法</button>
+		</div>
+	</template>
+
+	
+	<template id="news">
+
+		<div>
+			<v-header :msg="msg"  :run="run"></v-header>
+		
+		</div>
+	</template>
+
+
+	
+
+
+	<script>
+
+		var  Header={
+
+			template:"#header",
+			props:['msg','run'],
+			methods:{
+
+				runChild(){
+						// alert('child');
+						// run();
+
+						// alert(this.msg);
+
+						this.run();    /*子组件迪奥喲另父组件的方法*/
+				}
+			}
+		}
+		var  News={
+
+			template:"#news",
+
+			data:function(){
+
+				return{
+
+					msg:'this is news'
+				}
+			},
+			methods:{
+					run(){
+						alert('这是父组件的run方法');
+					}
+			},
+			components:{
+				'v-header':Header
+			}
+
+		}
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'news':News
+			}
+		});
+
+	</script>
+</body>
+</html>

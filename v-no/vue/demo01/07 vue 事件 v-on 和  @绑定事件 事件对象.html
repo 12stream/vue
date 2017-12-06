@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <style>
+        .button{
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background: red;
+            color: #fff;
+        }
+        .box{
+            height: 200px;
+            width: 200px;
+            background: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box">
+
+         {{msg}}
+
+         <br>
+
+         <br>
+         <button v-on:click="run">触发事件</button>
+
+
+         <button v-on:click="getData($event)" data-aid="20">事件对象</button>
+
+
+         <br>
+         <br>
+
+         <div class="box" @click="setColor">
+             
+
+         </div>
+
+
+
+
+
+         <input type="text" @keyDown="keyDownFn">
+        
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+//    可以在表单的input 元素上使用v-model 指令来创建双向数据绑定。它会根据input元素的类型自动选取正确的绑定模式。
+
+window.onload=function(){
+
+
+    var v=new Vue({
+
+        el:'#box',
+
+        data:{
+
+            msg:'数据msg',
+            name:'1111'
+        },
+        methods:{
+
+            run:function(){
+
+                    // this.msg="改变后的数据"
+                // alert(this.msg);
+
+                // var _that=this;
+                // setTimeout(function(){
+                //     alert(_that.msg);
+                // },2000)
+
+
+
+                //this通过 bind传到定时器里面
+
+                // setTimeout(function(){
+
+                //     alert(this.msg);
+
+                // }.bind(this),2000)
+
+
+
+                //箭头函数
+
+                 setTimeout(()=>{
+                    alert(this.msg);
+                },2000)
+
+            },
+            getData(e){
+
+                console.log(e);
+
+                alert(e.srcElement.dataset.aid);
+
+
+            },
+            setColor(e){
+
+                //执行事件的时候不传值也能拿到事件对象
+                console.log(e);
+
+                // e.srcElement    DOM节点
+
+                e.srcElement.style.background='blue';
+
+            },
+            keyDownFn(e){
+
+                 console.log(e);
+
+                 if(e.keyCode==13){
+
+                    alert('回车请求数据了');
+                 }
+            }
+        }
+
+       
+    })
+}
+
+
+</script>

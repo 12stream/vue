@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue组件-模板</title>
+	<script src="js/vue.js"></script>
+	<style>
+
+		.header{
+
+			border: 1px solid #000;
+			padding:10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+			
+			{{msg}}
+			<br>
+
+			<br>
+
+			<v-header></v-header>
+
+			<br>
+
+			<v-content></v-content>
+			<br>
+
+			<v-footer></v-footer>
+	</div>
+
+<!-- 底部组件的模板 -->
+	<template id="footer">
+			
+		<div>
+			
+				<h2>{{msg}}</h2>
+				<ul>
+					<li>这是一个列表</li>
+					<li>这是一个列表</li>
+					<li>这是一个列表</li>
+				</ul>
+
+				<button @click="setMsg"> 执行方法</button>
+		</div>
+
+	</template>
+
+	<template id="content">
+
+		<div>	
+
+			<hr>
+
+			<h1>这是内容--{{msg}}</h1>
+			
+			<ul>
+				<li>这是内容数据</li>
+			</ul>
+
+			<button @click="setMsg">改变msg的数据-content</button>
+			<br>
+			{{reverseMsg}}
+
+			<hr>
+
+		</div>
+		
+
+	</template>
+
+	<script>	
+
+	//定义组件
+		var Header={
+
+			template:'<div>{{name}} --<button @click="getName">执行事件</button>	</div>',
+			data(){   /*组件里面所有的数据都放在这个里面 ，注意写法*/
+
+				return {
+
+					name:'这是一个头部组件'
+				}
+			},
+			methods:{
+
+				getName:function(){
+
+					alert(this.name);
+				}
+			}
+
+		}
+
+
+
+		var Content={
+
+			template:"#content",
+			data(){
+
+				return{
+
+					msg:'这是Content的数据'
+				}
+			}
+			,methods:{
+
+
+				setMsg(){
+
+
+					this.msg='这是改变的content数据'
+				}
+			},computed:{
+
+				reverseMsg(){
+
+					return this.msg.split('').reverse().join('');
+				}
+			}
+		}
+
+		//定义组件
+
+		var Footer={
+
+			template:"#footer",
+			data(){
+
+				return{
+
+					msg:'这是底部组件的数据'
+				}
+			},
+			methods:{
+
+				setMsg(){
+
+					this.msg='这是底部组件的数据--改变后的值';
+				}
+			}
+		}
+
+
+
+
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				msg:'hello vue'
+			},
+			components:{  /*注册组件*/
+
+				"v-header":Header,
+
+				'v-footer':Footer,
+				"v-content":Content
+			}	
+
+		});
+
+	</script>
+</body>
+</html>
