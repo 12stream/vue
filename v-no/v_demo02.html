@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script type="text/javascript" src="vue-resource.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload=function(){
+            var app = new Vue({
+                el:"#box",
+                data:{
+                    msg:"时间绑定",
+                    id:"start",
+                    a:43,
+                    firstName:'Foo',
+                    lastName:'Bar',
+                    fullName:'Foo Bar',
+                    arr:['apple','orange','bannaer','pear','lemon','slide','sky'],
+                    list:[],
+                    search:'',
+                    username:'this is vue',
+                    result:'',
+                    ok:false,
+                    newList:[],
+                    searchData:''
+                },
+                methods:{
+                    run:function(){
+                        setTimeout(()=>{
+                            alert(this.msg);
+                        },1000)
+                    },
+                    getData:function(e){
+                        console.log(e);
+                        e.srcElement.style.background='blue';
+                    },
+                    fillterList:function(){
+                            this.list=[];
+                            this.arr.forEach((value,index)=>{
+                                if(value.indexOf(this.search)!=-1 &&this.search!=''){
+                                    this.list.push(value);
+                                }
+                            })
+                    },
+                    getrelData:function(){
+                        var that = this;
+                        var url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.searchData;
+                        // var url = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+                        // axios.get(url).then(function(res){
+                        //     console.log(res);
+                        //     that.newList = res.data.result;
+                        // }).catch(function(err){
+                        //     console.log(err);
+                        // })
+                        // this.$http.jsonp(url).then(function(res){
+                        //         console.log(res);
+                        //         that.newList = res.body.result;
+                        // },function(err){
+                        //         console.log(err);
+                        // })
+                        this.$http.jsonp(url,{
+                            jsonp:'cb'
+                        }).then(function(data){
+                            console.log(data);
+                            that.newList = data.body.s;
+                        },function(){
+
+                        })
+                        
+                    },
+                    keyDownFn(e){
+
+                        console.log(e.code);
+                        console.log(e.keyCode);
+
+                        if(e.keyCode==13){
+
+                            alert('回车请求数据了');
+                        }
+                    },
+                    changA(){
+                        this.a = 98;
+                    },
+                    dat:function(){
+                        return "这是一个标签内的数据";
+                    }
+                },mounted:function(){
+                    console.log(232);
+                },
+                computed:{
+                    b:function(){
+                        return this.a + 4;
+                    },
+                    reverseStr:function(){
+                        return this.msg.split("").reverse().join('');
+                    },
+                    fullName:function(){
+                        return this.firstName +''+ this.lastName;
+                    }
+                },watch:{
+                    // firstName:function(val){
+                    //     this.fullName = val + '' + this.lastName;
+                    // },
+                    // lastName:function(val){
+                    //     this.fullName = this.firstName +'' + val;
+                    // }
+                }
+            });
+            app.$watch('result',function(newData,oldData){
+                    console.log(newData + '------' +oldData);
+            })
+        }
+    </script>
+</head>
+<body> 
+    <div id="box">
+        <input type="text" v-model='firstName'>
+        <input type="text" v-model='lastName'>
+        {{fullName}}
+        a:{{a}}---------b:{{b}}
+        {{reverseStr}}
+        <button v-on:click="run">run事件</button>
+        <button v-on:click="getData($event)" data-cid="75">事件对象</button>
+        <span v-bind:id="id">id情况</span>
+        <input type="text" @keyDown="keyDownFn">
+        <button @click="changA">改变a的值</button>
+        <p>开始："{{dat()}}"</p>
+        <input type="text" v-model='search' @keyUp='fillterList'>
+        <ul>
+            <li v-for='item in list'>
+                -------{{item}}
+            </li>
+        </ul>
+        <input type="text" v-model='result'>
+        {{username}}
+
+        <div v-if="Math.random()>0.5">你好啊</div>
+        <div v-if="ok">ok</div>
+        <div v-show="2>3">show</div>
+        <!-- <h1 @click='getrelData'>获取数据</h1> -->
+        <!-- <ul>
+            <li v-for='sta in newList'>
+                {{sta.title}}
+            </li>
+        </ul> -->
+
+        <input type="text" v-model="searchData" @keyup="getrelData">
+        
+                    <ul>
+                        <li v-for="item in newList">
+        
+                            {{item}}
+                        </li>
+                    </ul>
+    </div>
+    <div class="demo">你好</div>
+</body>
+</html>
