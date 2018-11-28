@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title></title>
+
+    <script src="js/vue.js"></script>
+
+    <style>
+        .red{
+            color:red;
+        }
+        .button{
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background: red;
+            color: #fff;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+    <div id="box">
+           
+        {{msg}}
+
+        <br>
+        <br>
+
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+
+        <br><br>
+
+
+         <ul>   
+            <li v-for="(item,key) in list" :class={"red":key==1}>{{item}}</li>
+        </ul>
+       
+        <img :src="url" alt="">
+
+
+        <img v-bind:src="url" alt="">
+
+        <span v-html="h"></span>
+
+        <br><br>
+
+        <button v-on:click="run">执行方法</button>
+
+        <button @click="getData('111')">执行方法</button>
+         <br><br>
+
+
+    {{reverseMsg}}
+
+
+    <br>
+    <br>
+
+    <input type="text" @keyUp="inputChange">
+
+    <br><br>
+
+    <input type="text" v-model="msg">
+
+    {{msg}}
+
+
+
+     <br><br>
+      <br><br>
+       <br><br>
+
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+
+var app=new Vue({
+
+    el:"#box",
+    data:{
+        msg:'你好vue',
+        list:['1','2','3'],
+        url:'https://www.baidu.com/img/bd_logo1.png',
+        h:"<h2>你好vue</h2>"
+    },
+    methods:{
+
+        run(e){
+
+            console.log(e);
+            // alert(this.msg);
+
+            // this.msg="这是改变的数据"
+
+        },
+        getData(){
+
+
+        },
+        inputChange(e){
+
+            console.log(e)
+        }
+    },computed:{
+
+        reverseMsg:function(){
+            return this.msg.split('').reverse().join('');
+        }
+    },watch:{
+
+        msg:function(newValue,oldValue){
+                console.log(`${newValue}----${oldValue}`);
+
+        }
+    }
+
+})
+
+</script>

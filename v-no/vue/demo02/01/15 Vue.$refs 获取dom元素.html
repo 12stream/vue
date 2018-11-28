@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.$refs获取dom元素</title>
+    <script src="js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="box">
+    {{name}}
+
+    <div style="color:red" ref="oDiv">
+        我是一个div元素
+    </div>
+
+
+</div>
+<script>
+
+    var vm=new Vue({
+        el:'#box',
+        data:{
+            name:'zhangsan'
+        },mounted:function(){
+
+         //   alert(1213);
+
+
+            console.log(this.$refs.oDiv);
+
+
+            this.$refs.oDiv.style.color='blue';
+
+
+        }
+    });
+
+</script>
+</body>
+</html>

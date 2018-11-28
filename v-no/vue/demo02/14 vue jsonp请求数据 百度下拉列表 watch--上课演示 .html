@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <script type="text/javascript" src="js/vue-resource.js"></script>
+
+    <!--var api='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+newValue;-->
+
+</head>
+<body>
+    <div id="box">
+
+
+        <input type="text" v-model="search"/>
+
+        <ul>
+            <li v-for="item in list">
+                {{item}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var vm=new Vue({
+        el:"#box",
+        data:{
+
+            msg:'this is a msg',
+            search:'',
+            list:[],
+            timer:''
+            
+        },watch:{
+            search:function(){
+
+                //请求数据
+
+                //html5
+
+                var api='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.search;
+
+                clearTimeout(this.timer);
+
+                this.timer=setTimeout(()=>{
+                           this.$http.jsonp(api,{
+                                jsonp:'cb'
+                            }).then(response=>{
+
+                                console.log(response)      
+
+                                this.list= response.body.s;        
+
+                            },err=>{
+
+                            })
+
+                },200);
+               
+
+
+            }
+
+        }
+    })
+
+
+</script>

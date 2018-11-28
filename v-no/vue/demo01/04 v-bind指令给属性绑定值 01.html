@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue v-bind:src属性 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <style>
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload=function(){
+           var app=new Vue({
+
+                el:'#box',
+                data:{
+                     src:'https://misc.360buyimg.com/mtd/pc/index/home/images/logo.v2.png',
+                     id:123
+
+                },methods:{
+                    getData:function(){
+
+
+                    }
+                }
+           })
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+
+
+
+        <!--
+    src 是 HTML的属性，{{}} 是 ng 的表达式, 表达式可用于很多地方，包含属性，所以直接 src="{{vm.url}}" 其实就是使用Vue的表达式给属性赋值，这种做法的缺点是当第一次加载模板的时候浏览器会去请求 “{{vm.url}}” 的地址，当Vue编译模板后把 {{vm.url}} 替换成对应的URL后会再次请求真实的地址，所以为了避免第一次无效的请求，Vue 自带了v-bind:src 指令，其实和v-bind:href的原理类似。
+
+        -->
+
+
+
+
+        {{id}}
+        <br>
+
+        <div v-bind:id="id">这是一个div</div>
+
+
+        <br>
+        <div :id="id">这是一个div11</div>
+
+
+
+        <img :src="src" alt="">
+
+
+
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+     <script type="text/javascript" src="js/vue-resource.js"></script>
+
+    
+    <script>
+        //  var api='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=html5';
+        // 1.  应用fetch或axios 获取数据
+
+        //https://github.com/pagekit/vue-resource
+    </script>
+
+
+  <style>
+    .button{
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      background: red;
+      color: #fff;
+    }
+  </style>
+   
+
+</head>
+<body>
+    <div id="example">
+            {{msg}}
+
+            <br>
+            <br>
+
+            <div class="button" @click="getData()">请求数据</div>
+
+
+
+             <ul>
+                <li v-for="item in list">
+                    {{item.title}}
+                </li>
+            </ul>
+
+
+
+
+    </div>   
+</body>
+
+</html>
+
+<script>
+
+var vm=new Vue({
+    el:'#example',
+    data:{
+        msg:'this is msg',
+        list:[]
+    },methods:{
+
+      getData(){
+        //去服务器请求数据
+
+        //alert('1212');
+
+            // this.$http.get('/someUrl').then(data => {
+            //   // success callback
+            // }, err => {
+            //   // error callback
+            // });
+            var _that=this;
+
+            var url='http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+
+            this.$http.jsonp(url).then(function(data){
+
+              console.log(data.body.result);
+
+              _that.list=data.body.result;
+
+            },function(err){
+
+
+            });
+
+
+
+
+
+
+      }
+    }
+})
+
+
+</script>

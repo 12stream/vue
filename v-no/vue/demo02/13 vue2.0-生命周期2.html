@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="js/vue.js"></script>
+    <script>
+
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    msg:'welcome vue2.0'
+                },
+                methods:{
+                    update:function(){
+                        this.msg='大家好111';
+                    }
+                },mounted:function(){  /*实例创建完成并且模板编译完成   加载的时候默认触发的方法*/
+
+                    console.log('111111111111');
+
+
+                    this.update();
+                }
+
+
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="更新数据" @click="update">
+        {{msg}}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

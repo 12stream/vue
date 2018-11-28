@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+
+
+</head>
+<body>
+    <div id="demo">
+        
+        {{number*20}}
+
+        <br>
+        <br>
+
+
+        {{ok?'111':'222'}}
+
+
+        <br>
+        <br>
+
+        {{message.split('').reverse().join('')}}
+
+    
+    </div>
+</body>
+</html>
+<script>
+
+ window.onload=function(){
+
+
+     new Vue({
+         el: '#demo',
+         data: {
+             number:100,
+             ok:false,
+             message:'学前端很轻松'
+
+         },methods:{
+
+            reverse(){
+
+                console.log(this.message.split('').reverse().join(''));
+            }
+         },mounted(){
+
+            this.reverse();
+         }
+     })
+
+
+ }
+
+
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <style>
+
+
+    </style>
+
+</head>
+<body>
+    <div id="example">
+
+        <select name="info" id="info" @change="selectChange">
+
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
+
+
+        <br>
+        <br>
+       
+
+        <select name="info2" id="info2" v-model='selected'>
+            
+            <option  v-for="item in options" :value="item.value">{{item.text}}</option>
+        </select>
+
+        <br>{{selected}}
+
+
+        
+    </div>
+        
+    </div>
+</body>
+</html>
+
+<script>
+//    可以在表单的input 元素上使用v-model 指令来创建双向数据绑定。它会根据input元素的类型自动选取正确的绑定模式。
+
+window.onload=function(){
+    //在这里面写Vue.js代码
+    new Vue({
+        el: '#example',
+        data: {
+            selected: 'C',
+            suboptions:[],
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ]
+        },methods:{
+
+                selectChange(e){
+
+                        console.log(e.srcElement.value);
+                }
+            
+        }
+    })
+
+}
+
+
+
+</script>

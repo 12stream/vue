@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父子组件</title>
+	<script src="js/vue.js"></script>
+	
+
+	<script>
+		 //父组件给子组件传值的步骤
+
+		/*  1.父组件调用子组件的时候传值
+			<v-header :msg="msg" :num="123"></v-header>
+
+			2.在子组件接收父组件传过来的数据
+
+			props:['msg','num']
+
+
+			props和methos  和data同级
+
+
+		*/
+
+	</script>
+</head>
+<body>
+	<div id="box">
+		<news></news>
+
+	</div>
+
+	<template id="header">
+
+		<div>
+
+			<h2>这是一个头部--{{msg}}--{{num}}---{{age}}</h2>
+		</div>
+	</template>
+
+	
+	<template id="news">
+
+		<div>
+			<v-header :msg="msg" :num="number" :age="35"></v-header>
+			<h2>这是一个新闻--{{msg}}</h2>
+		</div>
+	</template>
+
+	<script>
+
+		var Header={
+
+			template:"#header",
+
+			data:function(){
+				return{
+					name:'this is header'
+				}	
+			},
+			// props:['msg','num','age']
+
+			props:{
+
+				msg:String,
+
+				num:Number,
+				age:{
+
+					 type: Number,
+      				 default: 100
+				}
+			}
+
+
+
+		}
+
+		var News={
+
+			template:"#news",
+
+			data:function(){
+
+				return {
+
+					msg:'这是一个新闻数据',
+					number:"数据"
+				}
+			},
+			components:{
+				'v-header':Header
+			}
+		}
+
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				msg:' this  is  vue'
+			},
+			components:{
+				'news':News
+			}
+		});
+		
+
+	</script>
+</body>
+</html>

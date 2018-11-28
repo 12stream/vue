@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <style>
+
+    .red{
+        color: red;
+    }
+    </style>
+
+</head>
+<body>
+    <div id="example">
+        <h1 v-if="ok">Yes if</h1>
+
+            <br><br>
+         <h1 v-show="!ok">Yes  show</h1>
+
+
+
+     <hr/>
+
+     <br>
+        
+
+        <div v-if="Math.random()>0.5">
+            
+            大于0.5
+        </div>
+        <div v-else>
+            小于0.5
+        </div>
+
+
+
+
+     
+
+    </div>
+</body>
+</html>
+
+<script>
+
+// v-if  dom操作  显示隐藏
+
+
+//v-show   display:none  dispaly:block;  显示隐藏
+
+
+
+    window.onload=function(){
+        //在这里面写Vue.js代码
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                ok:true,
+             
+            }
+        })
+       
+    }
+
+
+</script>

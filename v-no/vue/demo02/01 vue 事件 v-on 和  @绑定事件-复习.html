@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="box">
+    {{name}}
+
+    <br/>
+    <br/>
+
+    <button v-on:click="run()">点击触发事件</button>
+
+
+    <br/>
+    <br/>
+
+    <button @click="run()">点击触发事件 @执行事件</button>
+
+
+
+    <br/>
+    <br/>
+
+    <button @click="getName('张三111')">方法传值</button>
+
+
+
+    <br/>
+    <br/>
+
+
+    <button data-id="123" data-user="zhangsan" @click="requestData($event)">事件对象</button>
+
+
+</div>
+
+
+</body>
+
+</html>
+
+<script>
+    //    可以在表单的input 元素上使用v-model 指令来创建双向数据绑定。它会根据input元素的类型自动选取正确的绑定模式。
+    var vm = new Vue({
+        el: '#box',
+        data: {  /*绑定数据*/
+            name: 'Vue.js'
+        },
+        methods:{  /*定义方法*/
+
+            run:function(){
+
+                alert('run 方法');
+            },
+            getName:function(data){
+                alert(data);
+
+            },
+            requestData:function(e){
+
+                console.log(e);
+
+                console.log(e.srcElement.dataset.user);
+
+
+
+
+
+            }
+        }
+    })
+
+
+
+</script>

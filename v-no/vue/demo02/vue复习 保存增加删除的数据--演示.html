@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title></title>
+
+    <script src="js/vue.js"></script>
+
+    <style>
+        .red{
+            color:red;
+        }
+        .button{
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            background: red;
+            color: #fff;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+    <div id="box">
+    
+        <input type="text" v-model="msg">
+
+        <button @click="addData">增加+</button>
+
+
+    <br>
+    <hr>
+
+    <ul>
+        <li v-for="(item,key) in list">
+            
+            {{item}} ------------  <button @click="deleteData(key)">删除</button>
+        </li>
+    </ul>
+
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+
+var app=new Vue({
+
+    el:"#box",
+    data:{
+        msg:'',
+        list:[]
+      
+    },
+    methods:{
+
+      
+        addData(){
+
+           this.list.push(this.msg);
+
+           localStorage.setItem('list',JSON.stringify(this.list));
+        },         
+        deleteData(key){
+
+             this.list.splice(key,1);
+
+             localStorage.setItem('list',JSON.stringify(this.list));
+        }
+    },mounted(){
+
+        var list=JSON.parse(localStorage.getItem('list'));
+
+        this.list=list;
+    }
+
+})
+
+</script>

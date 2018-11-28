@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父组件给子组件传值</title>
+	<script src="js/vue.js"></script>
+	<script>
+		
+		//http://cn.vuejs.org/v2/guide/components.html#Prop-验证
+	</script>
+</head>
+<body>
+	<div id="box">
+		<v-header></v-header>	
+	</div>
+
+
+	<template id="header">
+		<div>
+			<h2>我是头部组件---{{msg}}</h2>	
+
+
+			<!--注意接收方式 my-num-->
+			<v-nav :m='msg' :my-num='num' :prop-d='num'></v-nav>   
+		</div>
+	</template>
+
+
+	<template id="nav">
+		<div>				
+			<h2>我是Nav组件--{{m}}--{{myNum}}-{{propD}}--{{propE}}</h2>
+		</div>
+	</template>
+
+
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'v-header':{
+					template:'#header',
+					data:function(){
+
+						return {
+							msg:'这是头部组件的数据',
+							num:123
+						}
+					},
+					components:{						
+						'v-nav':{
+							props:{
+								'm':String,
+								'myNum':Number ,   /*驼峰命名方式*/
+								'propD': {
+							      type: Number,
+							      default: 100
+							    },
+							    'propE':{
+							      type: Object,
+							      default: function () {
+							        return { message: 'hello' }
+							      }
+							    },
+							    // 自定义验证函数
+							    'propF':{
+							      validator: function (value) {
+							        return value > 10
+							      }
+							    }
+
+							},
+							template:'#nav'
+						}
+					}
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

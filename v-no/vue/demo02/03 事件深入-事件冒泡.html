@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <style>
+
+    </style>
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+
+                },
+                methods:{
+                    show1:function(ev){
+
+                       console.log(ev);
+                        alert(1);
+                        ev.cancelBubble=true;   /*阻止冒泡*/
+                    },
+                    show2:function(){
+                        alert(2);
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+
+        <div @click="show2()">
+
+            <input type="button" value="按钮" @click="show1($event)">
+
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

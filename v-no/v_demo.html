@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bind</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload=function(){
+            var app = new Vue({
+                el:"#box",
+                data:{
+                    msg:"你好vue",
+                    h:"<h1>这是一个h1标签</h1>",
+                    id:123,
+                    img:"图片路径"
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        {{msg}}
+        <br />
+        <br />
+        <span v-text="msg"></span>
+        <br />
+        <br />
+        <span v-html="h"></span>
+        <br />
+        <br />
+        <div v-bind:id="id">此div有id</div>
+        <div v-bind:title="msg">数据</div>
+
+        <div :id="id">此div有id的简写方式</div>
+        <div :title="msg">数据的简写方式</div>
+    </div>
+</body>
+</html>

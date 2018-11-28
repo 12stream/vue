@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+
+    <script>
+    	
+    	window.onload=function(){
+
+    		var app=new Vue({
+
+	    		el:"#box",
+	    		data:{
+	    			msg:'你好vue',
+	    			h:'<h2>这是一个h2</h2>',
+	    			id:123,
+	    			url:'https://www.baidu.com/img/bd_logo1.png'
+	    		}
+	    	})
+    	}
+
+
+    </script>
+
+</head>
+<body>
+
+  <!-- 视图 -->
+  <div id='box'>
+		{{msg}}
+
+		<br>
+
+		<br>
+
+		<span v-text="msg"></span>
+		<br>
+		<br>
+		{{h}}
+
+		<br>
+		<br>
+		<span v-html="h"></span>
+
+		<br>
+		<br>
+
+
+		<div v-bind:id="id">这是一个div有id数据</div>
+
+
+		<div v-bind:title="msg">鼠标瞄上去看下</div>
+
+	
+		<br>
+
+		<img v-bind:src="url" alt="">
+
+
+
+		<br>
+		<hr>
+		<div :title="msg">鼠标瞄上去看下</div>
+		<br>
+		<img :src="url" alt="">
+
+
+		<!-- 
+
+			v-on:click     @click
+
+			v-bind:src     :src
+
+
+		 -->
+
+
+
+
+
+  </div>
+
+
+</body>
+</html>

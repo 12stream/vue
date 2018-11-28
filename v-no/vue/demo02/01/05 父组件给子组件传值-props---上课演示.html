@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父子组件</title>
+	<script src="js/vue.js"></script>
+	
+
+	<script>
+		 //父组件给子组件传值的步骤
+
+		/*  1.父组件调用子组件的时候传值
+			<v-header :msg="msg" :num="123"></v-header>
+
+			2.在子组件接收父组件传过来的数据
+
+			props:['msg','num']
+
+			props和methos  和data同级			
+
+		*/
+
+	</script>
+</head>
+<body>
+
+	<div id="box">
+		
+		<v-news></v-news>
+	</div>
+
+
+	<template id="header">
+		
+		<div>
+			
+			<h2>这是一个头部组件--{{m}}--{{msg}}</h2>
+
+			<ul>
+				<li v-for="item in list">
+					{{item}}
+				</li>
+			</ul>
+		</div>
+	</template>
+
+
+	<template id="news">
+		
+		<div>
+			
+			<hr>
+			<v-header :m="msg" :list="list"></v-header>
+
+			
+			<h2>这是一个新闻组件--{{msg}}</h2>
+
+
+			<v-footer></v-footer>
+
+			<hr>
+
+
+		</div>
+	</template>
+
+	<script>
+
+		
+
+		//头部
+
+		//定义组件
+		var Header={
+
+			template:"#header",
+			data(){
+
+				return {
+
+					msg:'1111111111'
+				}
+			},
+			props:['m','list']
+		}
+
+		var Footer={
+
+			template:"<h2>这是一个底部组件</h2>"
+		}
+
+		//新闻
+
+
+		var News={
+			template:"#news",
+
+			data(){
+
+				return{
+					msg:'这是新闻的数据',
+					list:['1','2','3']
+				}
+			},
+
+			components:{  /*新闻组件注册了头部组件*/
+				"v-header":Header,
+				"v-footer":Footer
+
+			}
+		}
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				msg:' this  is  vue'
+			},
+			components:{  /*注册组件*/
+				 'v-news':News
+				
+
+			}
+			
+		});
+		
+
+	</script>
+</body>
+</html>

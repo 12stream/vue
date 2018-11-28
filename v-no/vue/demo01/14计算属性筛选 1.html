@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs 教程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+      
+     <script src="js/vue.js"></script>
+    
+   <!-- list:['apple','banana','orange','pear'] -->
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="search">
+       
+
+        <ul>
+            <li v-for="item in list">
+                
+                {{item}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>
+
+
+<script>
+    
+    var v=new Vue({
+
+        el:'#box',
+        data:{
+            search:'',
+            arr:['apple','banana','orange','pear']
+        },
+        computed:{
+
+            list:function(){
+                // return this.search;
+
+                //获取文本框的值，遍历数组，找出数组里面所有包含这个字符的元素
+
+                //注意this
+
+                // forEach  是个异步
+
+                // b
+
+                var listarr=[];
+
+                this.arr.forEach((value,key)=>{
+                    if(value.indexOf(this.search)!=-1&&this.search!=''){
+
+                        listarr.push(value);
+
+                    }
+
+                })
+
+                return listarr;
+
+
+
+            }
+        }
+
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
